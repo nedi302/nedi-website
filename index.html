@@ -1,427 +1,305 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#f7f7f5">
-  <meta name="description" content="nedi entwickelt moderne Software und praktische Apps.">
-  <title>nedi — Software & Apps</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>nedi — Software, die einfach funktioniert.</title>
+    <meta name="description" content="nedi ist eine unabhängige Software- und App-Organisation. Wir entwickeln intuitive, minimalistische und zuverlässige digitale Produkte.">
+    <style>
+        :root {
+            --bg-color: #f7f7f5;
+            --text-color: #111111;
+            --muted-color: #666666;
+            --border-color: #e2e2dc;
+            --card-bg: #ffffff;
+            --radius: 12px;
+            --max-width: 960px;
+        }
 
-  <style>
-    :root {
-      --background: #f7f7f5;
-      --white: #ffffff;
-      --black: #111111;
-      --gray: #70706a;
-      --border: #e5e5e0;
-    }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-    * {
-      box-sizing: border-box;
-    }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
 
-    html {
-      scroll-behavior: smooth;
-    }
+        .container {
+            max-width: var(--max-width);
+            margin: 0 auto;
+            padding: 0 24px;
+        }
 
-    body {
-      margin: 0;
-      background: var(--background);
-      color: var(--black);
-      font-family: Inter, -apple-system, BlinkMacSystemFont,
-        "Segoe UI", sans-serif;
-      line-height: 1.6;
-    }
+        /* Header & Navigation */
+        header {
+            padding: 32px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 64px;
+        }
 
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+        .logo {
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -0.03em;
+            color: var(--text-color);
+            text-decoration: none;
+        }
 
-    .container {
-      width: min(1080px, calc(100% - 48px));
-      margin: auto;
-    }
+        nav {
+            display: flex;
+            gap: 24px;
+        }
 
-    header {
-      height: 84px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--border);
-    }
+        nav a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.2s ease;
+        }
 
-    .logo {
-      font-size: 32px;
-      font-weight: 750;
-      letter-spacing: -3px;
-    }
+        nav a:hover {
+            opacity: 0.6;
+        }
 
-    nav {
-      display: flex;
-      gap: 28px;
-    }
+        /* Hero Section */
+        .hero {
+            padding: 48px 0 80px 0;
+        }
 
-    nav a {
-      color: var(--gray);
-      font-size: 14px;
-      transition: color 0.2s;
-    }
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.15;
+            margin-bottom: 24px;
+            max-width: 800px;
+        }
 
-    nav a:hover {
-      color: var(--black);
-    }
+        .hero p {
+            font-size: clamp(1.1rem, 2vw, 1.25rem);
+            color: var(--muted-color);
+            max-width: 600px;
+            margin-bottom: 32px;
+        }
 
-    .hero {
-      padding: 145px 0 135px;
-    }
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--bg-color);
+            padding: 12px 24px;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease, transform 0.1s ease;
+        }
 
-    .eyebrow {
-      color: var(--gray);
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-size: 12px;
-      font-weight: 650;
-    }
+        .btn:hover {
+            opacity: 0.85;
+        }
 
-    h1 {
-      margin: 24px 0;
-      font-size: clamp(48px, 8vw, 100px);
-      line-height: 1;
-      letter-spacing: -7px;
-      font-weight: 650;
-    }
+        .btn:active {
+            transform: scale(0.98);
+        }
 
-    .hero p {
-      max-width: 580px;
-      color: var(--gray);
-      font-size: 18px;
-    }
+        /* Sections */
+        section {
+            padding: 64px 0;
+            border-top: 1px solid var(--border-color);
+        }
 
-    .button {
-      display: inline-block;
-      margin-top: 24px;
-      padding: 13px 21px;
-      background: var(--black);
-      color: white;
-      border: 1px solid var(--black);
-      border-radius: 30px;
-      font-size: 14px;
-      transition: opacity 0.2s, transform 0.2s;
-    }
+        h2 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            letter-spacing: -0.03em;
+            margin-bottom: 32px;
+        }
 
-    .button:hover {
-      opacity: 0.8;
-      transform: translateY(-2px);
-    }
+        /* About */
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--muted-color);
+            max-width: 700px;
+            line-height: 1.7;
+        }
 
-    .button.secondary {
-      background: transparent;
-      color: var(--black);
-      border-color: var(--border);
-      margin-left: 8px;
-    }
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
 
-    section.content-section {
-      padding: 85px 0;
-      border-top: 1px solid var(--border);
-    }
+        .project-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: border-color 0.2s ease;
+        }
 
-    .section-label {
-      color: var(--gray);
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      margin-bottom: 18px;
-    }
+        .project-card:hover {
+            border-color: #b0b0a8;
+        }
 
-    h2 {
-      font-size: clamp(32px, 5vw, 52px);
-      letter-spacing: -2.5px;
-      line-height: 1.12;
-      margin: 0 0 20px;
-      font-weight: 620;
-    }
+        .project-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--muted-color);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
 
-    .description {
-      max-width: 650px;
-      color: var(--gray);
-      font-size: 17px;
-    }
+        .project-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+        }
 
-    .projects {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 38px;
-    }
+        .project-card p {
+            color: var(--muted-color);
+            font-size: 0.95rem;
+        }
 
-    .project {
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 28px;
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
+        /* Contact */
+        .contact-content {
+            font-size: 1.1rem;
+            color: var(--muted-color);
+            margin-bottom: 24px;
+        }
 
-    .project-icon {
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      font-size: 20px;
-      font-weight: 750;
-      letter-spacing: -2px;
-    }
+        .contact-email {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-color);
+            text-decoration: none;
+            border-bottom: 2px solid var(--text-color);
+            padding-bottom: 2px;
+            transition: opacity 0.2s ease;
+        }
 
-    .status {
-      color: var(--gray);
-      background: var(--background);
-      padding: 5px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-    }
+        .contact-email:hover {
+            opacity: 0.6;
+        }
 
-    .project h3 {
-      margin: 25px 0 5px;
-      font-size: 21px;
-      letter-spacing: -0.5px;
-    }
+        /* Footer */
+        footer {
+            padding: 48px 0;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--muted-color);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
 
-    .project p {
-      color: var(--gray);
-      font-size: 14px;
-      margin: 0;
-    }
+        footer a {
+            color: var(--muted-color);
+            text-navigation: none;
+        }
 
-    .contact {
-      background: var(--black);
-      color: white;
-      padding: 55px;
-      border-radius: 22px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 30px;
-    }
+        footer a:hover {
+            color: var(--text-color);
+        }
 
-    .contact .section-label,
-    .contact p {
-      color: #c5c5bf;
-    }
-
-    .contact h2 {
-      margin-bottom: 12px;
-    }
-
-    .contact p {
-      margin-bottom: 0;
-    }
-
-    .contact .button {
-      background: white;
-      color: var(--black);
-      border-color: white;
-      white-space: nowrap;
-    }
-
-    footer {
-      min-height: 110px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      color: var(--gray);
-      font-size: 13px;
-    }
-
-    footer a:hover {
-      color: var(--black);
-    }
-
-    @media (max-width: 650px) {
-      .container {
-        width: calc(100% - 36px);
-      }
-
-      header {
-        height: 72px;
-      }
-
-      nav {
-        gap: 14px;
-      }
-
-      nav a {
-        font-size: 12px;
-      }
-
-      .hero {
-        padding: 100px 0;
-      }
-
-      h1 {
-        letter-spacing: -3.5px;
-      }
-
-      section.content-section {
-        padding: 65px 0;
-      }
-
-      .projects {
-        grid-template-columns: 1fr;
-      }
-
-      .contact {
-        padding: 30px;
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .contact .button {
-        white-space: normal;
-      }
-
-      footer {
-        align-items: flex-start;
-        justify-content: center;
-        flex-direction: column;
-        padding: 25px 0;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html {
-        scroll-behavior: auto;
-      }
-
-      *, *::before, *::after {
-        transition: none !important;
-      }
-    }
-  </style>
+        /* Responsive adjustments */
+        @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            footer {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="container">
 
-    <header>
-      <a class="logo" href="#start" aria-label="nedi Startseite">nedi</a>
+    <div class="container">
+        <!-- Navigation -->
+        <header>
+            <a href="#" class="logo">nedi</a>
+            <nav aria-label="Hauptnavigation">
+                <a href="#about">Über uns</a>
+                <a href="#projects">Projekte</a>
+                <a href="#contact">Kontakt</a>
+            </nav>
+        </header>
 
-      <nav aria-label="Hauptnavigation">
-        <a href="#about">Über uns</a>
-        <a href="#projects">Projekte</a>
-        <a href="#contact">Kontakt</a>
-      </nav>
-    </header>
+        <!-- Hero Section -->
+        <main>
+            <section class="hero" style="border-top: none; padding-top: 24px;">
+                <h1>Software, die einfach funktioniert.</h1>
+                <p>nedi ist eine unabhängige Software- und App-Organisation. Wir entwickeln fokussierte, intuitive und zuverlässige digitale Werkzeuge für den Alltag.</p>
+                <a href="#projects" class="btn">Projekte ansehen</a>
+            </section>
 
-    <main>
-      <section class="hero" id="start">
-        <div class="eyebrow">Software · Apps · Ideen</div>
+            <!-- Über uns -->
+            <section id="about">
+                <h2>Über uns</h2>
+                <p class="about-text">
+                    Wir glauben, dass großartige Software durch Klarheit, Schlichtheit und kompromisslose Benutzerfreundlichkeit entsteht. Als unabhängiges Entwickler-Kollektiv konzentrieren wir uns auf das Wesentliche: sauberen Code, durchdachtes Design und digitale Produkte, die echte Probleme lösen, ohne abzulenken.
+                </p>
+            </section>
 
-        <h1>Software, die<br>einfach funktioniert.</h1>
+            <!-- Projekte -->
+            <section id="projects">
+                <h2>Projekte</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <span class="project-tag">In Entwicklung</span>
+                        <h3>App Alpha</h3>
+                        <p>Ein leichtgewichtiger Workflow-Assistent für strukturierte Notizen und schnelle Ideenfindung.</p>
+                    </div>
+                    <div class="project-card">
+                        <span class="project-tag">Geplant</span>
+                        <h3>App Beta</h3>
+                        <p>Ein minimalistisches Tool zur Zeiterfassung und Organisation persönlicher Projekte.</p>
+                    </div>
+                    <div class="project-card">
+                        <span class="project-tag">Konzept</span>
+                        <h3>App Gamma</h3>
+                        <p>Eine datenschutzfreundliche Lösung für verschlüsselte lokale Notizen und Dokumente.</p>
+                    </div>
+                </div>
+            </section>
 
-        <p>
-          nedi ist eine unabhängige Software- und App-Organisation.
-          Wir verwandeln Ideen in praktische digitale Lösungen –
-          mit Fokus auf Funktionalität, Einfachheit und ein gutes
-          Nutzererlebnis.
-        </p>
+            <!-- Kontakt -->
+            <section id="contact">
+                <h2>Kontakt</h2>
+                <p class="contact-content">Haben Sie Fragen, Feedback oder möchten Sie mehr über unsere Projekte erfahren? Schreiben Sie uns direkt:</p>
+                <a href="mailto:mbusiness3022@gmail.com" class="contact-email">mbusiness3022@gmail.com</a>
+            </section>
+        </main>
 
-        <a class="button" href="#projects">Projekte entdecken ↘</a>
-        <a class="button secondary" href="#contact">Kontakt</a>
-      </section>
+        <!-- Footer -->
+        <footer>
+            <div>&copy; <span id="year"></span> nedi. Alle Rechte vorbehalten.</div>
+            <div><a href="mailto:mbusiness3022@gmail.com">mbusiness3022@gmail.com</a></div>
+        </footer>
+    </div>
 
-      <section class="content-section" id="about">
-        <div class="section-label">01 / Über nedi</div>
-
-        <h2>Durchdacht entwickelt.<br>Auf das Wesentliche fokussiert.</h2>
-
-        <p class="description">
-          Wir entwickeln Software und Apps, die alltägliche Aufgaben
-          einfacher machen. Dabei legen wir Wert auf klare Gestaltung,
-          zuverlässige Funktionen und eine intuitive Bedienung.
-          Unser Ziel ist es, nützliche digitale Produkte zu schaffen,
-          die sich auf das konzentrieren, was wirklich wichtig ist.
-        </p>
-      </section>
-
-      <section class="content-section" id="projects">
-        <div class="section-label">02 / Projekte</div>
-
-        <h2>Unsere Projekte.</h2>
-
-        <p class="description">
-          Wir arbeiten an neuen Ideen und digitalen Lösungen.
-          Hier findest du Informationen zu unseren Apps und Projekten.
-        </p>
-
-        <div class="projects">
-          <article class="project">
-            <div>
-              <div class="project-icon" aria-hidden="true">n.</div>
-              <h3>Neue Projekte</h3>
-              <p>
-                Wir entwickeln neue Ideen und praktische Softwarelösungen.
-                Weitere Informationen folgen.
-              </p>
-            </div>
-            <div style="margin-top: 24px">
-              <span class="status">In Arbeit</span>
-            </div>
-          </article>
-
-          <article class="project">
-            <div>
-              <div class="project-icon" aria-hidden="true">↗</div>
-              <h3>Apps & Releases</h3>
-              <p>
-                Informationen zu unseren veröffentlichten Apps und
-                Downloads werden hier ergänzt.
-              </p>
-            </div>
-            <div style="margin-top: 24px">
-              <span class="status">Demnächst</span>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="content-section" id="contact">
-        <div class="contact">
-          <div>
-            <div class="section-label">03 / Kontakt</div>
-            <h2>Eine Frage oder eine Idee?</h2>
-            <p>Wir freuen uns über deine Nachricht.</p>
-          </div>
-
-          <a class="button"
-             href="mailto:mbusiness3022@gmail.com">
-            E-Mail schreiben ↗
-          </a>
-        </div>
-      </section>
-    </main>
-
-    <footer>
-      <a class="logo" href="#start">nedi</a>
-      <span>© <span id="year">2026</span> nedi. Alle Rechte vorbehalten.</span>
-      <a href="mailto:mbusiness3022@gmail.com">
-        mbusiness3022@gmail.com
-      </a>
-    </footer>
-
-  </div>
-
-  <script>
-    document.getElementById("year").textContent =
-      new Date().getFullYear();
-  </script>
+    <script>
+        // Minimalistisches JavaScript: Dynamisches Copyright-Jahr
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
